@@ -1,4 +1,5 @@
-
+var mongoose = require("../config/mongoose");
+var bcrypt = require('bcrypt');
 
 var memberSchema = mongoose.Schema({
     firstName: {
