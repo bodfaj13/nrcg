@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= desc %>">
+    <meta name="author" content="<%= author %>">
+	  <title><%= title %></title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link href="../css/dashboard.css" rel="stylesheet">
+  </head> 
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light  navbar-dark fixed-top bg-dark my-nav fixed-top">
+      
+        <a class="navbar-brand" href="/">
+        <img src="../img/redeem.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        RCCG PACESETTERS
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/admin/dashboard" data-toggle="tooltip" title="Home"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+              </li>
+               
+              <li class="nav-item hide-on-med-and-up">
+              <a class="nav-link" href="/admin/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Overview</a>
+              </li>
+              <% if(user.globalAdmin == true){%>
+              <li class="nav-item hide-on-med-and-up">
+              <a class="nav-link" href="/admin/addadmin" ><i class="fa fa-user-plus" aria-hidden="true"></i>  Add Admins</a>
+            </li>
+
+            <li class="nav-item hide-on-med-and-up">
+              <a class="nav-link" href="/admin/viewadmin"><i class="fa fa-user" aria-hidden="true"></i>  View Admins</a>
+            </li>
+            <%}%>
+            <li class="nav-item hide-on-med-and-up">
+              <a class="nav-link active" data-toggle="collapse" data-target="#demo" href="#"><i class="fa fa-cog"></i>  Settings</a>
+              <div id="demo" class="collapse">
+                <ul class="list-group">
+                <li class="list-group-item">
+                  <a class="nav-link txtBlack" href="#"><i class="fa fa-user" aria-hidden="true"></i> Update  Username</a>
+                </li>
+                <li class="list-group-item">
+                  <a class="nav-link txtBlack" href="#"><i class="fa fa-user" aria-hidden="true"></i>  Update Email</a>
+                </li>
+                <li class="list-group-item">
+                  <a class="nav-link txtBlack" href="#"><i class="fa fa-user" aria-hidden="true"></i>  Update Password</a>
+                </li>
+              </ul>
+              </div>
+            </li>
+            <li class="nav-item hide-on-med-and-up">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+            </li>
+          </ul>
+         
+      
+  </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Overview </a>
+            </li>
+            <% if(user.globalAdmin == true){%>
+              <li class="nav-item">
+              <a class="nav-link" href="/admin/addadmin"><i class="fa fa-user-plus" aria-hidden="true"></i>  Add Admins</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/viewadmin"><i class="fa fa-user" aria-hidden="true"></i>  View Admins</a>
+            </li>
+            <%}%>
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="collapse" data-target="#demo" href="#"><i class="fa fa-cog"></i>  Settings</a>
+              <div id="demo" class="collapse">
+                <ul class="list-group">
+                <li class="list-group-item">
+                  <a class="nav-link" href="/admin/username"><i class="fa fa-user" aria-hidden="true"></i> Update  Username</a>
+                </li>
+                <li class="list-group-item">
+                  <a class="nav-link" href="/admin/email"><i class="fa fa-user" aria-hidden="true"></i>  Update Email</a>
+                </li>
+                <li class="list-group-item">
+                  <a class="nav-link" href="/admin/password"><i class="fa fa-user" aria-hidden="true"></i>  Update Password</a>
+                </li>
+              </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+            </li>
+          </ul>
+        </nav>
+
+        <main class="col-sm-9 ml-sm-auto col-md-10 pt-3 grey" role="main">
+      
+         
+          <h3><%= user.name
+          %> Administrator Dashboard</h3>
+
+          <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#usernametab" role="tab">Username</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#emailtab" role="tab">Email</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#passwordtab" role="tab">Password</a>
+  </li>
+</ul>
+<div>
+			<% if(settingErr){%>
+
+				<% for(err in settingErr){%>
+					<div class="alert alert-danger alert-dismissable fade show smallSpace">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= settingErr[err].msg %>
+					</strong>
+					</div>
+				<%}%>
+			<%}%>
+</div>
+<div>
+			<% if(updateErr.length == 1){%>
+
+					<div class="alert alert-danger alert-dismissable fade show smallSpace">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= updateErr %>
+					</strong>
+					</div>
+
+			<%}%>
+		</div>
+<div>
+			<% if(settingSuc.length == 1){%>
+				
+					<div class="alert alert-success alert-dismissable fade show smallSpace">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= settingSuc %>
+					</strong>
+					</div>
+
+			<%}%>
+</div>
+<div class="tab-content">
+<div class="tab-pane active" id="usernametab" role="tabpanel">
+    <form action="/admin/updateusername" method="POST">
+          <div class="form-group">
+            <label for="setusername1" class="form-control-label">Former Username</label>
+            <input type="text" class="form-control" id="setusername1" name="olddie">
+          </div>
+          <div class="form-group">
+            <label for="setusername2" class="form-control-label">New Username</label>
+            <input type="text" class="form-control" id="setusername2" name="newwie">
+          </div>
+         <button type="submit" class="btn green my-btn">Update Username</button>
+        </form>
+  </div>
+  <div class="tab-pane fade" id="emailtab" role="tabpanel">
+    <form action="/admin/updateemail" method="POST">
+          <div class="form-group">
+            <label for="setemail1" class="form-control-label">Former Email Address</label>
+            <input type="text" class="form-control" id="setemail1" name="emailolddie">
+          </div>
+          <div class="form-group">
+            <label for="setemail2" class="form-control-label">New Email Address</label>
+            <input type="text" class="form-control" id="setemail2" name="emailnewwie">
+          </div>
+         <button type="submit" class="btn green my-btn">Update Email</button>
+        </form>
+  </div>
+  <div class="tab-pane fade" id="passwordtab" role="tabpanel">
+    <form>
+          <div class="form-group">
+            <label for="setpass1" class="form-control-label">Former Password</label>
+            <input type="text" class="form-control" id="setpass1">
+          </div>
+          <div class="form-group">
+            <label for="setpass2" class="form-control-label">New Password</label>
+            <input type="text" class="form-control" id="setpass2">
+          </div>
+         <button type="button" class="btn green my-btn">Update Password</button>
+        </form>
+  </div>
+  
+</div>
+
+        </main>
+      </div>
+    </div>
+
+
+    <!-- modals -->
+
+<div class="modal fade " id="logout" tabindex="-1" role="dialog" aria-labelledby="logout" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addadminmodal">  Are you sure you want to logout?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-danger my-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary my-btn"  id="logout">Confirm</button>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+</div>
+
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/jquery-tabledit.js"></script>
+    <script src="../js/scripts.js"></script>
+  </body>
+</html>

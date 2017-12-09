@@ -1,0 +1,19 @@
+<td><%= membersPool[member].firstName " + " membersPool[member].middleName " + " membersPool[member].lastName %></td>
+                        <td><%= membersPool[member].dob %></td>
+                        <td><%= membersPool[member].phoneNumber %></td>
+                        <td><%= membersPool[member].sex %></td>
+                        <td><%= membersPool[member].emailAddress %></td>
+                        <td><%= membersPool[member].homeAddress %></td>
+                        <td><%= membersPool[member].city %></td>
+                        <td><%= membersPool[member].state %></td>
+                        <td><%= membersPool[member].prayerRequest %></td>
+                        <td><%= membersPool[member].time %></td>
+
+
+
+                        nodemon ./bin/www
+
+                        
+
+
+ 

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= desc %>">
+    <meta name="author" content="<%= author %>">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/datepicker.css">
+</head>
+<body>
+	<!-- nav -->
+	<%include ./nav%>
+	<!-- //nav -->
+	<!-- content -->
+	<div class="jumbotron blue darken-4 black-text" id="jumbo-holder">
+  		<div class="container text-center">
+    		<h1 class="display-3">You are welcomed!</h1>
+    		<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    		<a href="#reg-form"><button class="btn my-btn animated bounce">Let us know you more <i class="fa fa-arrow-down" aria-hidden="true"></i></button></a>
+    		
+    		
+  		</div>
+	</div>
+	<!-- reg form -->
+	<div class="container" id="reg-form">
+		<div>
+			<% if(regmemberErr){%>
+				<% for(err in regmemberErr){%>
+					<div class="alert alert-danger alert-dismissable fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= regmemberErr[err].msg %>
+					</strong>
+					</div>
+				<%}%>
+			<%}%>
+		</div>
+		<div>
+			<% if(emailErr.length == 1){%>
+				
+					<div class="alert alert-danger alert-dismissable fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= emailErr %>
+					</strong>
+					</div>
+
+			<%}%>
+		</div>
+		<div>
+			<% if(regmemberSuc.length == 1){%>
+				
+					<div class="alert alert-success alert-dismissable fade show">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>
+						<%= regmemberSuc %>
+					</strong>
+					</div>
+
+			<%}%>
+		</div>
+		<form action="/regmember" method="POST">
+  			<div class="form-row">
+   				 <div class="form-group col-xs-12 col-md-4">
+      				<label for="firstName" class="col-form-label">First Name</label>
+      				<input type="text" class="form-control" id="firstName" placeholder="" name="firstName" required>
+    			</div>
+    			<div class="form-group col-xs-12 col-md-4">
+      				<label for="middleName" class="col-form-label">Middle Name</label>
+      				<input type="text" class="form-control" id="middleName" placeholder="" name="middleName">
+    			</div>
+    			<div class="form-group col-xs-12 col-md-4">
+      				<label for="lastName" class="col-form-label">Last Name</label>
+      				<input type="text" class="form-control" id="lastName" placeholder="" name="lastName" required>
+   				</div>
+  			</div>
+  			<div class="form-row">
+   				 <div class="form-group col-xs-12 col-md-4">
+      				<label for="dob" class="col-form-label">Date Of Birth</label>
+      				<input type="text" class="form-control" id="dob" placeholder="" name="dob" 	data-toggle="datepicker" required>
+    			</div>	
+    			<div class="form-group col-xs-12 col-md-4">
+      				<label for="phoneNumber" class="col-form-label">Phone Number </label>
+      				<input type="number" class="form-control" id="phoneNumber" placeholder="" name="phoneNumber" required>
+    			</div>	
+    			<div class="form-group col-xs-12 col-md-4">
+      				<label for="sex" class="col-form-label">Sex </label>
+      				 <select class="form-control" id="sex" name="sex" required>
+      				 	<option>Choose...</option>
+      					<option>Male</option>
+      					<option>Female</option>
+    				</select>
+    			</div>	
+  			</div>
+  			<div class="form-row">
+   				 <div class="form-group col-xs-12 col-md-4">
+      				<label for="emailAddress" class="col-form-label">Email Address</label>
+      				<input type="email" class="form-control" id="emailAddress" placeholder="example jon@gmail.com" name="emailAddress" required>
+    			</div>	
+    			<div class="form-group col-xs-12 col-md-8">
+      				<label for="homeAddress" class="col-form-label">Home Address </label>
+      				<input type="text" class="form-control" id="homeAddress" placeholder="" name="homeAddress" required>
+    			</div>	
+  			</div>
+  			<div class="form-row">
+   				<div class="form-group col-xs-12 col-md-6">
+      				<label for="city" class="col-form-label">City</label>
+      				<input type="text" class="form-control" id="city" name="city" required>
+    			</div>
+    			<div class="form-group col-xs-12 col-md-6">
+      				<label for="state" class="col-form-label">State</label>
+      				<input type="text" class="form-control" id="state" name="state" required>
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="prayerRequest">Prayer Request(s)</label>
+    			<textarea class="form-control" id="prayerRequest" rows="5" name="prayerRequest" required></textarea>
+
+  			</div>
+  			
+  			<button type="reset" class="btn grey my-btn">Reset</button>
+  			<button type="submit" class="btn green my-btn">Submit</button>
+  			<br>
+		</form>
+	</div>
+	<!-- //reg from -->
+	<!-- content -->
+	<!-- footer -->
+	<footer>
+		<div class="page-footer">
+			<p class="footer-copyright text-center">
+				© 2017. All rights reserved | Design by Bello Ajibola
+			</p>
+		</div>
+	</footer>
+
+	<!-- //footer -->
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/datepicker.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

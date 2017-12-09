@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="<%= desc %>">
+  <meta name="author" content="<%= author %>">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+</head>
+<body>
+	<!-- nav -->
+	<%include ./nav%>
+	<!-- //nav -->
+	<!-- content -->
+	
+	<div class="container">
+		<div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" id="login-holder">
+        <br>
+        <p class="display-4 text-center">Admin Login</p>
+        <!-- login form -->
+        <form action="/admin/login" method="POST">
+          <div>
+			        <% if(loginErrU.length == 1){%>
+				
+					      <div class="alert alert-danger alert-dismissable fade show">
+						    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					    <strong>
+						    <%= loginErrU %>
+					    </strong>
+					    </div>
+
+			      <%}%>
+		      </div>
+          <div>
+			        <% if(ensurelogin.length == 1){%>
+				
+					      <div class="alert alert-danger alert-dismissable fade show">
+						    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					    <strong>
+						    <%= ensurelogin %>
+					    </strong>
+					    </div>
+
+			      <%}%>
+		      </div>
+
+          <div class="form-group">
+            <label for="Username" class="col-form-label">Username</label>
+            <input type="text" class="form-control" id="Username" placeholder="" name="username" required>
+          </div>
+          <div class="form-group">
+             <label for="password" class="col-form-label">Password</label>
+              <div class="input-group">
+              <input type="password" class="form-control" id="password" placeholder="" name="password" required>
+              <div class="input-group-addon pass-addon"><i class="fa fa-eye" aria-hidden="true"></i></div>
+            </div>
+         </div>
+        <button type="submit" class="btn green my-btn">Sign in</button>
+      </form>
+      <br>
+      <!-- //login from -->
+      </div>
+    </div>
+	</div>
+	
+	<!-- content -->
+	
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
