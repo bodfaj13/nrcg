@@ -17,13 +17,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/dashboard', ensureAuthenticated, getAllMembers,function(req, res, next){
+router.get('/dashboard', ensureAuthenticated, function(req, res, next){
   res.render('dashboard',{
     title: appdetails.Title,
     author: appdetails.Author,
     desc: appdetails.Description,
     membersPool: membersPool,
-    adminsPool: ""
+    adminsPool: getAllMembers()
   });
 });
 
