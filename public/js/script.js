@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+	new WOW().init();
+	
 	$('.dropdown-item').on('mouseenter',function(){
 		$(this).css({
 			background: 'white'

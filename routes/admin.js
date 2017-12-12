@@ -5,8 +5,7 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 var Admin = require('../model/adminModel');
 var Member = require('../model/memberModel');
-var membersPool = [];
-var adminsPool = [];
+
 
 router.get('/', function(req, res, next) {
   res.render('login',{
@@ -24,7 +23,7 @@ router.get('/dashboard', ensureAuthenticated, getAllMembers,function(req, res, n
     author: appdetails.Author,
     desc: appdetails.Description,
     membersPool: membersPool,
-    adminsPool: adminsPool
+    adminsPool: ""
   });
 });
 
@@ -45,7 +44,7 @@ router.get('/viewadmin', ensureAuthenticated, getAllAdmins, function(req, res, n
     title: appdetails.Title,
     author: appdetails.Author,
     desc: appdetails.Description,
-    adminsPool: adminsPool
+    adminsPool: ""
   });
 });
 
@@ -281,7 +280,7 @@ function ensureAuthenticated(req, res, next){
 function getAllMembers(req, res, next){
   Member.findAllMembers(function(err, data){
     if(err)throw err;
-    membersPool = data;
+    return data;
   });
   next();
 }
@@ -289,7 +288,7 @@ function getAllMembers(req, res, next){
 function getAllAdmins(req, res, next){
   Admin.findAllAdmins(function(err, data){
     if(err)throw err;
-    adminsPool = data;
+    return data;
   });
   next();
 }
