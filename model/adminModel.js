@@ -79,3 +79,11 @@ module.exports.updateEmail =  function(getAdmin, callback){
     
     Admin.update(cond, update, options, callback);
 }
+
+module.exports.createUserPassword =  function(user, password,callback){
+    bcrypt.hash(password, 10, function(err, hash){
+        if(err)throw err;
+        user.password = hash;
+        user.save(callback);
+    });
+}

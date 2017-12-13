@@ -305,7 +305,24 @@ router.post('/updatepassword', function(req, res, next){
         req.flash('settingErr', errors);
         res.redirect('/admin/passsettings');
       }else{
-        res.send('go');
+        Admin.comparePassword(passolddie, req.user.password, function(err, isMatch){
+          if(err) throw err;
+          if(isMatch){
+            if(passnewwie == passolddie){
+              req.flash('updateErr', 'New Passowrd must not be the same as the Old Passowrd');
+              res.redirect('/admin/passsettings');
+            }else{
+              Admin.createUserPassword(req.user, passnewwie,function(err, user){
+                if(err)throw err;
+                req.flash('settingSuc', 'Password updated successfully');
+                res.redirect('/admin/passsettings');
+              });
+            }
+          }else{
+            req.flash('updateErr', 'Former Password do not tally');
+            res.redirect('/admin/passsettings');
+          }
+        });
       }
     });
   
