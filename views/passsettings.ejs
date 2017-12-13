@@ -110,13 +110,13 @@
 
           <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#usernametab" role="tab">Username</a>
+    <a class="nav-link" href="/admin/settings">Username</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/admin/emailsettings">Email</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/passsettings">Password</a>
+    <a class="nav-link active"  href="#passwordtab" role="tab">Password</a>
   </li>
 </ul>
 <div>
@@ -157,19 +157,19 @@
 			<%}%>
 </div>
 <div class="tab-content">
-<div class="tab-pane active" id="usernametab" role="tabpanel">
-    <form action="/admin/updateusername" method="POST">
-          <div class="form-group">
-            <label for="setusername1" class="form-control-label">Former Username</label>
-            <input type="text" class="form-control" id="setusername1" name="olddie">
-          </div>
-          <div class="form-group">
-            <label for="setusername2" class="form-control-label">New Username</label>
-            <input type="text" class="form-control" id="setusername2" name="newwie">
-          </div>
-         <button type="submit" class="btn green my-btn">Update Username</button>
-        </form>
-  </div>
+  <div class="tab-pane active" id="passwordtab" role="tabpanel">
+<form action="/admin/updatepassword" method="POST">
+      <div class="form-group">
+        <label for="setpass1" class="form-control-label">Former Password</label>
+        <input type="text" class="form-control" id="setpass1" name="passolddie">
+      </div>
+      <div class="form-group">
+        <label for="setpass2" class="form-control-label">New Password</label>
+        <input type="text" class="form-control" id="setpass2" name="passnewwie">
+      </div>
+     <button type="submit" class="btn green my-btn">Update Password</button>
+    </form>
+</div>
 </div>
 
         </main>

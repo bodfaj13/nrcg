@@ -18,12 +18,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/dashboard', ensureAuthenticated, function(req, res, next){
-  res.render('dashboard',{
-    title: appdetails.Title,
-    author: appdetails.Author,
-    desc: appdetails.Description,
-    membersPool: membersPool,
-    adminsPool: getAllMembers()
+  Member.findAllMembers(function(err, user){
+    if(err)throw err;
+    res.render('dashboard',{
+      title: appdetails.Title,
+      author: appdetails.Author,
+      desc: appdetails.Description,
+      dataPool: user
+    });
   });
 });
 
@@ -39,17 +41,42 @@ router.get('/addadmin', ensureAuthenticated,function(req, res, next){
   });
 });
 
-router.get('/viewadmin', ensureAuthenticated, getAllAdmins, function(req, res, next){
-  res.render('viewadmin',{
-    title: appdetails.Title,
-    author: appdetails.Author,
-    desc: appdetails.Description,
-    adminsPool: ""
+router.get('/viewadmin', ensureAuthenticated, function(req, res, next){
+  Admin.findAllAdmins(function(err, user){
+    if(err)throw err;
+    res.render('viewadmin',{
+      title: appdetails.Title,
+      author: appdetails.Author,
+      desc: appdetails.Description,
+      dataPool: user
+    });
   });
 });
 
 router.get('/settings', ensureAuthenticated,function(req, res, next){
   res.render('settings',{
+    title: appdetails.Title,
+    author: appdetails.Author,
+    desc: appdetails.Description,
+    settingErr: req.flash('settingErr'),
+    updateErr: req.flash('updateErr'),
+    settingSuc: req.flash('settingSuc')
+  });
+});
+
+router.get('/emailsettings', ensureAuthenticated,function(req, res, next){
+  res.render('emailsettings',{
+    title: appdetails.Title,
+    author: appdetails.Author,
+    desc: appdetails.Description,
+    settingErr: req.flash('settingErr'),
+    updateErr: req.flash('updateErr'),
+    settingSuc: req.flash('settingSuc')
+  });
+});
+
+router.get('/passsettings', ensureAuthenticated,function(req, res, next){
+  res.render('passsettings',{
     title: appdetails.Title,
     author: appdetails.Author,
     desc: appdetails.Description,
@@ -104,7 +131,7 @@ router.post('/addadmin', function(req, res, next){
   username =  req.body.username;
   password =  req.body.password;
   globalAdmin = req.body.globalAdmin;
-  time = new Date();
+  time = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
   req.checkBody('name', 'Name is required').notEmpty();
   req.checkBody('email', 'Email Address is required').notEmpty();
@@ -228,16 +255,16 @@ router.post('/updateemail', function(req, res, next){
     req.getValidationResult().then(function(result){
       if(!result.isEmpty()){
         var errors = result.array();
-        req.flash('esettingErr', errors);
-        res.redirect('/admin/settings');
+        req.flash('settingErr', errors);
+        res.redirect('/admin/emailsettings');
       }else{
         if(req.user.email != emailolddie){
-          req.flash('eupdateErr', 'Former Email Address do not tally');
-          res.redirect('/admin/settings');
+          req.flash('updateErr', 'Former Email Address do not tally');
+          res.redirect('/admin/emailsettings');
         }else{
          if(emailolddie == emailnewwie){
-            req.flash('eupdateErr', 'New Email Address must not be the same as the Old Email Address');
-            res.redirect('/admin/settings');
+            req.flash('updateErr', 'New Email Address must not be the same as the Old Email Address');
+            res.redirect('/admin/emailsettings');
           }else{
             Admin.checkAdminEmail(emailnewwie, function(err, user){
               if(err) throw err;
@@ -248,16 +275,37 @@ router.post('/updateemail', function(req, res, next){
                 }
                 Admin.updateEmail(getAdmin, function(err, numAffected){
                   if(err) throw err;
-                  req.flash('esettingSuc', 'Email Address updated successfully');
-                  res.redirect('/admin/settings');
+                  req.flash('settingSuc', 'Email Address updated successfully');
+                  res.redirect('/admin/emailsettings');
                 });
               }else{
-                req.flash('eupdateErr', 'Email Addres already exists!');
-                res.redirect('/admin/settings');
+                req.flash('updateErr', 'Email Addres already exists!');
+                res.redirect('/admin/emailsettings');
               }
             });
           }
         }
+      }
+    });
+  
+});
+
+router.post('/updatepassword', function(req, res, next){
+  var passolddie, passnewwie;
+  passolddie = req.body.passolddie;
+  passnewwie = req.body.passnewwie;
+
+    req.checkBody('passolddie', 'Former Password is required').notEmpty();
+    req.checkBody('passnewwie', 'New Password is required').notEmpty();
+    req.checkBody('passnewwie', 'Password lenght must be within 8 and 12 characters').len(8, 12);
+
+    req.getValidationResult().then(function(result){
+      if(!result.isEmpty()){
+        var errors = result.array();
+        req.flash('settingErr', errors);
+        res.redirect('/admin/passsettings');
+      }else{
+        res.send('go');
       }
     });
   

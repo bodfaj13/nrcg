@@ -89,63 +89,39 @@
 
           <h2>New Members Details</h2>
           <div class="table-responsive">
-            <%if(membersPool){%>
-              <table class="table table-striped myTable1">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>DOB</th>
-                    <th>Phone Number</th>
-                    <th>Sex</th>
-                    <th>Email Address</th>
-                    <th>Home Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Prayer Request</th>
-                    <th>Date Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%for(member in membersPool){%>
-                      <tr>
-                        <td><%= membersPool[member].firstName %> <%= membersPool[member].middleName %> <%= membersPool[member].lastName %></td>
-                        <td><%= membersPool[member].dob %></td>
-                        <td><%= membersPool[member].phoneNumber %></td>
-                        <td><%= membersPool[member].sex %></td>
-                        <td><%= membersPool[member].emailAddress %></td>
-                        <td><%= membersPool[member].homeAddress %></td>
-                        <td><%= membersPool[member].city %></td>
-                        <td><%= membersPool[member].state %></td>
-                        <td><%= membersPool[member].prayerRequest %></td>
-                        <td><%= membersPool[member].time %></td>
-                      </tr>
-                  <%}%>
-                </tbody>
-              </table>
-            <%}%>
-          </div>
-
-         
-          <div class="align-center">
-            <nav aria-label="...">
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active">
-                <span class="page-link">
-                  2
-                  <span class="sr-only">(current)</span>
-                </span>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+<%if(dataPool){%>
+  <table class="table table-striped myTable1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Phone Number</th>
+        <th>Sex</th>
+        <th>Email Address</th>
+        <th>Home Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Date Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%for(member in dataPool){%>
+          <tr>
+            <td><%= dataPool[member].firstName %> <%= dataPool[member].middleName %> <%= dataPool[member].lastName %></td>
+            <td><%= dataPool[member].dob %></td>
+            <td><%= dataPool[member].phoneNumber %></td>
+            <td><%= dataPool[member].sex %></td>
+            <td><%= dataPool[member].emailAddress %></td>
+            <td><%= dataPool[member].homeAddress %></td>
+            <td><%= dataPool[member].city %></td>
+            <td><%= dataPool[member].state %></td>
+            <td><%= dataPool[member].time %></td>
+          </tr>
+      <%}%>
+    </tbody>
+  </table>
+<%}%>
+</div>
 
           
         </main>

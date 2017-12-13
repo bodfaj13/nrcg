@@ -29,7 +29,7 @@
   		</div>
 	</div>
 	<!-- reg form -->
-	<div class="container wow slideInDown" id="reg-form" data-wow-duration="1s">
+	<div class="container wow slideInDown" id="reg-form" data-wow-duration="3s">
 		<div>
 			<% if(regmemberErr){%>
 				<% for(err in regmemberErr){%>
@@ -119,12 +119,7 @@
       				<input type="text" class="form-control" id="state" name="state" required>
     			</div>
   			</div>
-  			<div class="form-group">
-    			<label for="prayerRequest">Prayer Request(s)</label>
-    			<textarea class="form-control" id="prayerRequest" rows="5" name="prayerRequest" required></textarea>
 
-  			</div>
-  			
   			<button type="reset" class="btn grey my-btn">Reset</button>
   			<button type="submit" class="btn green my-btn">Submit</button>
   			<br>

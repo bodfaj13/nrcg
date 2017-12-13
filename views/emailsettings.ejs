@@ -110,13 +110,13 @@
 
           <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#usernametab" role="tab">Username</a>
+    <a class="nav-link" href="/admin/settings">Username</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/emailsettings">Email</a>
+    <a class="nav-link active" data-toggle="tab" href="#emailtab" role="tab">Email</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/passsettings">Password</a>
+    <a class="nav-link"  href="/admin/passsettings">Password</a>
   </li>
 </ul>
 <div>
@@ -157,18 +157,18 @@
 			<%}%>
 </div>
 <div class="tab-content">
-<div class="tab-pane active" id="usernametab" role="tabpanel">
-    <form action="/admin/updateusername" method="POST">
+  <div class="tab-pane active" id="emailtab" role="tabpanel">
+    <form action="/admin/updateemail" method="POST">
           <div class="form-group">
-            <label for="setusername1" class="form-control-label">Former Username</label>
-            <input type="text" class="form-control" id="setusername1" name="olddie">
+            <label for="setemail1" class="form-control-label">Former Email Address</label>
+            <input type="text" class="form-control" id="setemail1" name="emailolddie">
           </div>
           <div class="form-group">
-            <label for="setusername2" class="form-control-label">New Username</label>
-            <input type="text" class="form-control" id="setusername2" name="newwie">
+            <label for="setemail2" class="form-control-label">New Email Address</label>
+            <input type="text" class="form-control" id="setemail2" name="emailnewwie">
           </div>
-         <button type="submit" class="btn green my-btn">Update Username</button>
-        </form>
+         <button type="submit" class="btn green my-btn">Update Email</button>
+      </form>
   </div>
 </div>
 

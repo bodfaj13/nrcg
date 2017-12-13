@@ -3,6 +3,7 @@ var router = express.Router();
 var appdetails = require('../config/appdetails.json');
 var Member = require('../model/memberModel');
 var config = require('../config/config');
+var moment = require('moment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,8 +31,7 @@ router.post('/regmember', function(req, res, next){
   homeAddress = req.body.homeAddress;
   city = req.body.city;
   state = req.body.state;
-  prayerRequest = req.body.prayerRequest;
-  time = new Date();
+  time = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
   req.checkBody('firstName', 'First Name is required').notEmpty();
   req.checkBody('lastName', 'Last Name is required').notEmpty();
@@ -43,7 +43,7 @@ router.post('/regmember', function(req, res, next){
   req.checkBody('homeAddress', 'Home Address is required').notEmpty();
   req.checkBody('city', 'City is required').notEmpty();
   req.checkBody('state', 'State is required').notEmpty();
-  req.checkBody('prayerRequest', 'Prayer Request(s) is required').notEmpty();
+
 
   var result = req.getValidationResult();
   req.getValidationResult().then(function(result){

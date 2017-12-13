@@ -41,10 +41,6 @@ var memberSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    prayerRequest: {
-        type: String,
-        required: true
-    },
     time: {
         type: Date,
         required: true

@@ -87,30 +87,32 @@
 
            <button class="btn btn-outline-success my-btn my-2 my-sm-0 refreshbtn hide-on-large-only" type="submit">Refresh To see The Details</button>
 
-            <div class="table-responsive">
-            <%if(adminsPool){%>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Email Address</th>
-                    <th>Global Admin</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%for(admin in adminsPool){%>
-                      <tr>
-                        <td><%= adminsPool[admin].name %></td>
-                        <td><%= adminsPool[admin].username %></td>
-                        <td><%= adminsPool[admin].email %></td>
-                        <td><%= adminsPool[admin].globalAdmin %></td>
-                      </tr>
-                  <%}%>
-                </tbody>
-              </table>
-            <%}%>
-          </div>
+
+<h2>Admin Details</h2>
+           <div class="table-responsive">
+<%if(dataPool){%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email Address</th>
+      <th>Global Admin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%for(admin in dataPool){%>
+        <tr>
+          <td><%= dataPool[admin].name %></td>
+          <td><%= dataPool[admin].username %></td>
+          <td><%= dataPool[admin].email %></td>
+          <td><%= dataPool[admin].globalAdmin %></td>
+        </tr>
+    <%}%>
+  </tbody>
+</table>
+<%}%>
+</div>
         </main>
       </div>
     </div>
