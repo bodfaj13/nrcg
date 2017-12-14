@@ -32,13 +32,12 @@ footer.page-footer .footer-copyright {
   font-weight: 300;
 }
 #login-holder,#jumbo-holder{
-	margin-top: 50px;
+	margin-top: 51px;
 }
 .fourofour{
   margin-top: 70px;
   margin-bottom: 70px;
 }
-
 /*colors*/
 .green {
   background-color: #4CAF50 !important;

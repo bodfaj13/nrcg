@@ -42,7 +42,7 @@ var memberSchema = mongoose.Schema({
         required: true
     },
     time: {
-        type: Date,
+        type: String,
         required: true
     }
 });

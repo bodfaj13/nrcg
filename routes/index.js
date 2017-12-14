@@ -67,7 +67,6 @@ router.post('/regmember', function(req, res, next){
             homeAddress : homeAddress,
             city : city,
             state : state,
-            prayerRequest : prayerRequest,
             time : time
           });
 
