@@ -5,6 +5,7 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 var Admin = require('../model/adminModel');
 var Member = require('../model/memberModel');
+var moment = require('moment');
 
 
 router.get('/', function(req, res, next) {
